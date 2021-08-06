@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>J.R-TDL</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -12,12 +12,16 @@
         <!-- Styles -->
         <style>
             html, body {
-                background-color: #fff;
+                background-image: url('/img/todo.png');
+                background-repeat: no-repeat;
+                background-position-y: 100px;
+
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
                 margin: 0;
+
             }
 
             .full-height {
@@ -45,7 +49,7 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 44px;
             }
 
             .links > a {
@@ -61,6 +65,7 @@
             .m-b-md {
                 margin-bottom: 30px;
             }
+
         </style>
     </head>
     <body>
@@ -70,7 +75,7 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}" >Login</a>
 
                         @if (Route::has('register'))
                             <a href="{{ route('register') }}">Register</a>
@@ -79,20 +84,15 @@
                 </div>
             @endif
 
-            <div class="content">
+            <div class="content" style="margin-left: 500px;">
                 <div class="title m-b-md">
-                    Laravel
+            Manage your Time Well!
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <hr class="bg-secondary" style="width: 80px;">
+                <div>
+                    <h2>Create your own Task</h2>
                 </div>
+                
             </div>
         </div>
     </body>

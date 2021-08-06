@@ -8,11 +8,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use \App\User;
 
+
 class TaskListController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function store(Request $request)
     {
-
         $request->validate([
 
             'name'=> 'required',
@@ -28,8 +34,9 @@ class TaskListController extends Controller
 
     public function show($list_id)
     {
-        $taskList = Auth::user()->task_lists()->findOrFail($list_id);
+        $taskList = Auth::user()->task_lists()->findOrFail($list_id)    ;
         return view('tasks', compact('taskList'));
+       
     }
 
     public function addTask(Request $request, $list_id)
@@ -55,15 +62,30 @@ class TaskListController extends Controller
         $list_item = Auth::user()->list_items()->findOrFail($list_item_id);
         $list_item->is_done = ! $is_done;
         $list_item->save();
+
         return redirect()->back();
     }
 
-    public function destroy($list_id )
+    public function destroy(TaskList $list_id )
     {
         
-        $list = TaskList::find($list_id);
-       $list->delete();
+        $list_id->list_items()->delete();
+       $list_id->delete();
         
         return redirect()->back();
+    }
+
+    public function delete(ListItem $list_id )
+    {
+        
+        $list_id->task_list()->delete();
+        $list_id->delete();
+      
+        return redirect()->back();
+    }
+    public function getCountListAttribute()
+    {
+        $id = Auth::user()->id;
+        return $this->list_items()->where('user_id',$id)->count();
     }
 }

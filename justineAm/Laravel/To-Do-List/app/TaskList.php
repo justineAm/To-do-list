@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Auth;
 
 class TaskList extends Model
 {
@@ -23,4 +24,8 @@ class TaskList extends Model
     {
         return $this->list_items()->where('is_done',1)->count();
     }
+
+    
+
+
 }

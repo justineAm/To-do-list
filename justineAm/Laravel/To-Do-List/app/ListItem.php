@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ListItem extends Model
 {
+    
     public function task_list()
     {
         return $this->belongsTo(TaskList::class);
@@ -15,4 +16,6 @@ class ListItem extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    
 }
